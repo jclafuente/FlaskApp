@@ -9,7 +9,7 @@ def hola_mundo():
     return render_template('prueba.html', nombre=nombre)
 
 
-@app.route('/ws/getAll', methods=['GET','POST'])
+@app.route('/ws/getAll', methods=['GET', 'POST'])
 def get_all():
     tasks = [
         {
@@ -29,4 +29,4 @@ def get_all():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5656)
