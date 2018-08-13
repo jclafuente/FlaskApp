@@ -1,11 +1,22 @@
-from flask import Flask, render_template, jsonify
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hola_mundo():
-    nombre = "Juan"
+def index():
+    nombre = "Index"
+    return render_template('prueba.html', nombre=nombre)
+
+
+@app.route('/params')
+def params():
+    # Parametros en el request tipo GET
+    parm = request.args.get('param1', 'no contiene este parametro')
+
+    nombre = "El parametro es : {}".format(parm)
     return render_template('prueba.html', nombre=nombre)
 
 
@@ -29,4 +40,5 @@ def get_all():
 
 
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0', port=5656)
